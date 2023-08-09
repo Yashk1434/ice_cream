@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>Baskin Robbins</title>
+
+<style>
+    * {
+        font-size: 50px;
+	text-color:yellow;
+    }
+
+    body {
+        background-image: url("icecream.jpg");
+	background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    }
+	
+</style>
+
+<script>
+    function icecream() {
+        event.preventDefault();
+        let name = document.getElementById("name");
+        let opt1 = document.getElementById("option1");
+        let opt2 = document.getElementById("option2");
+        let opt3 = document.getElementById("option3");
+        let opt4 = document.getElementById("option4");
+        let ans = document.getElementById("ans");
+        
+        let toppings = "";
+        if (opt1.checked) toppings += "Oreo ";
+        if (opt2.checked) toppings += "TF ";
+        if (opt3.checked) toppings += "Chocolate Syrup ";
+        if (opt4.checked) toppings += "Sprinkles ";
+
+        let msg = "Flavor: " + name.value + ", Toppings: " + toppings;
+        ans.innerHTML = msg;
+
+        if (name.value == "") {
+            alert("Please enter something");
+            ans.innerHTML = "";
+            name.focus();
+            return;
+        } else if (name.value.trim() == "") {
+            alert("Please enter a name");
+            ans.innerHTML = "";
+            name.focus();
+            return;
+        } else if (!name.value.match(/^[A-Za-z ]+$/)) {
+            alert("Please enter alphabets");
+            name.value = "";
+            ans.innerHTML = "";
+            name.focus();
+            return;
+        }
+    }
+</script>
+</head>
+
+<body>
+<center>
+    <h1>Baskin Robbins</h1>
+
+    <form onsubmit="icecream()">
+        <input type="text" placeholder="Ice-Cream Flavour" id="name"/>
+        <br><br>
+        <h1>Choose Sprinkle</h1>
+        <input type="radio" name="a" id="option1" checked /> Chocolate
+        <input type="radio" name="a" id="option2" /> TF
+        <input type="radio" name="a" id="option3" /> Chocolate Syrup
+        <input type="radio" name="a" id="option4" /> Sprinkles
+        <br><br>
+        <input type="submit" />
+    </form>
+
+    <h2 id="ans"></h2>
+</center>
+</body>
+</html>
